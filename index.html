@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE Project Portfolio - Cinetix & Mobile Stock System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1E293B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for sidebar and main content */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7c7c7; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0; 
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow-x: auto;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans h-screen flex overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-72 bg-dark text-slate-300 flex flex-col h-full shadow-xl z-20 flex-shrink-0 transition-transform duration-300" id="sidebar">
+        <div class="p-6 bg-slate-900 border-b border-slate-700">
+            <h1 class="text-2xl font-bold text-white tracking-wide"><i class="fa-solid fa-laptop-code text-primary mr-2"></i>SE Portfolio</h1>
+            <p class="text-xs text-slate-400 mt-2">Software Engineering Lab</p>
+        </div>
+        
+        <div class="overflow-y-auto flex-1 py-4">
+            <nav class="space-y-1 px-3" id="nav-links">
+                <!-- Dynamically populated links -->
+            </nav>
+        </div>
+        
+        <div class="p-4 bg-slate-900 border-t border-slate-700 text-xs text-center text-slate-500">
+            Design & Developed per IEEE Standards
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        
+        <!-- Topbar -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6 z-10 flex-shrink-0">
+            <div class="flex items-center">
+                <button onclick="toggleSidebar()" class="mr-4 text-slate-500 hover:text-slate-800 md:hidden">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <h2 class="text-xl font-semibold text-slate-800" id="current-expt-title">Experiment 1: Problem Statement</h2>
+            </div>
+            
+            <!-- Project Toggle Switch -->
+            <div class="flex bg-slate-100 p-1 rounded-lg shadow-inner border border-slate-200">
+                <button onclick="setProject('cinetix')" id="btn-cinetix" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all shadow bg-white text-primary">
+                    <i class="fa-solid fa-film mr-2"></i>Cinetix
+                </button>
+                <button onclick="setProject('mobile')" id="btn-mobile" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-slate-500 hover:text-slate-800">
+                    <i class="fa-solid fa-mobile-screen mr-2"></i>Mobile Stock
+                </button>
+            </div>
+        </header>
+
+        <!-- Scrollable Content Container -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 bg-slate-50 relative" id="content-container">
+            
+            <!-- EXPT 1: Problem Statement -->
+            <div id="expt-1" class="expt-content fade-in">
+                
+                <!-- Cinetix Data -->
+                <div class="project-cinetix">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-4">Cinetix – Online Movie Ticket Booking</h3>
+                        
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">1. Background & Existing System</h4>
+                        <p class="text-slate-600 mb-4 leading-relaxed">Traditional physical box-office setups require customers to wait in long queues, offer limited visibility into seat layouts, and rely heavily on paper tickets. Reconciliation of ticket revenues is manual and prone to human errors.</p>
+                        
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">2. Proposed System Objectives</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-2 mb-4">
+                            <li>Automate movie browsing, seat selection, and checkout.</li>
+                            <li>Provide an interactive real-time graphical seat layout.</li>
+                            <li>Prevent double bookings using transient database locking.</li>
+                            <li>Generate digital e-tickets with verifiable QR codes.</li>
+                            <li>Provide cinema admins with robust box-office analytics.</li>
+                        </ul>
+
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">3. Final Problem Statement</h4>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-md text-slate-700 italic">
+                            "The proposed Cinetix platform provides a centralized, automated web application for cinema ticketing and theatre operations. It enables moviegoers to view trailers, select showtimes, pick seats from an interactive real-time floor plan, and book digital tickets securely online. Simultaneously, it equips theatre administrators with tools to configure multi-screen auditoriums, manage schedules, adjust ticket pricing, and analyze box-office revenue in real time."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Stock Data -->
+                <div class="project-mobile hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-4">Mobile Stock System – Retail POS & Inventory</h3>
+                        
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">1. Background & Existing System</h4>
+                        <p class="text-slate-600 mb-4 leading-relaxed">Retail mobile shops often manage inventory using paper registers or generic spreadsheets. Tracking 15-digit IMEI numbers manually leads to clerical errors, inventory leakage, warranty complications, and stockouts of fast-moving products.</p>
+                        
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">2. Proposed System Objectives</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-2 mb-4">
+                            <li>Provide strict unit-level tracking of devices via unique 15-digit IMEI verification.</li>
+                            <li>Automate stock inwarding and real-time deductions upon sale.</li>
+                            <li>Expedite checkout using USB barcode/IMEI scanners.</li>
+                            <li>Generate GST-compliant tax invoices displaying purchased IMEIs for warranty.</li>
+                            <li>Maintain supplier purchase logs and generate gross margin reports.</li>
+                        </ul>
+
+                        <h4 class="text-lg font-semibold text-primary mt-6 mb-2">3. Final Problem Statement</h4>
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-md text-slate-700 italic">
+                            "The proposed Mobile Stock System is an integrated inventory and point-of-sale platform developed specifically for mobile electronics retailers. It automates inventory inwarding, tracks individual devices via barcode scanning, provides automated low-stock warnings, and enables rapid counter billing. It minimizes stock discrepancies, protects against inventory leakage, and provides store owners with complete visibility over profits and warranty claims."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 2: SRS -->
+            <div id="expt-2" class="expt-content hidden fade-in">
+                <!-- Cinetix SRS -->
+                <div class="project-cinetix">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-6">SRS: Cinetix Platform</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-bold text-dark mb-4 bg-slate-100 p-2 rounded">Functional Requirements</h4>
+                                <ul class="space-y-3 text-sm text-slate-600">
+                                    <li><strong class="text-slate-800">FR1:</strong> System shall authenticate users and admins (JWT).</li>
+                                    <li><strong class="text-slate-800">FR2:</strong> Display movies with posters, synopses, and showtimes.</li>
+                                    <li><strong class="text-slate-800">FR3:</strong> Present an interactive 2D visual seat layout.</li>
+                                    <li><strong class="text-slate-800">FR4:</strong> Temporarily lock seats for 10 mins during checkout.</li>
+                                    <li><strong class="text-slate-800">FR5:</strong> Generate e-ticket with a unique verifiable QR code.</li>
+                                    <li><strong class="text-slate-800">FR6:</strong> Admins can manage screens, shows, and pricing tiers.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-dark mb-4 bg-slate-100 p-2 rounded">Non-Functional Requirements</h4>
+                                <ul class="space-y-3 text-sm text-slate-600">
+                                    <li><strong class="text-slate-800">Security:</strong> Passwords hashed (bcrypt); HTTPS enforced.</li>
+                                    <li><strong class="text-slate-800">Performance:</strong> Seat map loads in < 1.5 seconds.</li>
+                                    <li><strong class="text-slate-800">Concurrency:</strong> DB transactional locking to prevent double booking.</li>
+                                    <li><strong class="text-slate-800">Availability:</strong> 99.5% uptime during peak ticket releases.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Stock SRS -->
+                <div class="project-mobile hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-6">SRS: Mobile Stock System</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-bold text-dark mb-4 bg-slate-100 p-2 rounded">Functional Requirements</h4>
+                                <ul class="space-y-3 text-sm text-slate-600">
+                                    <li><strong class="text-slate-800">FR1:</strong> Role-based access (Admin, Stock Manager, Cashier).</li>
+                                    <li><strong class="text-slate-800">FR2:</strong> Enforce strictly unique 15-digit IMEI verification.</li>
+                                    <li><strong class="text-slate-800">FR3:</strong> Real-time automated low-stock dashboard alerts.</li>
+                                    <li><strong class="text-slate-800">FR4:</strong> Instant barcode scanning for POS invoice generation.</li>
+                                    <li><strong class="text-slate-800">FR5:</strong> Automatic calculation of CGST, SGST, and net totals.</li>
+                                    <li><strong class="text-slate-800">FR6:</strong> Generate daily gross margin and dead-stock reports.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-dark mb-4 bg-slate-100 p-2 rounded">Non-Functional Requirements</h4>
+                                <ul class="space-y-3 text-sm text-slate-600">
+                                    <li><strong class="text-slate-800">Data Integrity:</strong> Strict DB unique constraints on IMEI records.</li>
+                                    <li><strong class="text-slate-800">Performance:</strong> Scanner lookup completes in < 500ms.</li>
+                                    <li><strong class="text-slate-800">Security:</strong> Cashiers cannot view wholesale purchase costs.</li>
+                                    <li><strong class="text-slate-800">Usability:</strong> Keyboard shortcuts support for rapid billing.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 3: COCOMO -->
+            <div id="expt-3" class="expt-content hidden fade-in">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+                    <h3 class="text-xl font-bold text-slate-800 border-b pb-3 mb-6">Basic COCOMO Estimation (Organic Mode)</h3>
+                    <p class="text-slate-600 mb-6 text-sm">Parameters for Organic Mode: <strong>a = 2.4, b = 1.05, c = 2.5, d = 0.38</strong></p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200 border">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Project</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Size (KLOC)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Effort (PM)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Dev Time (Months)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Staff Size</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Productivity (LOC/PM)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-200">
+                                <tr class="project-cinetix bg-blue-50/50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-800">Cinetix</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">30 KLOC</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">85.35 PM</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">13.55</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">6-7 Persons</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">351.5</td>
+                                </tr>
+                                <tr class="project-mobile hidden bg-emerald-50/50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-800">Mobile Stock System</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">15 KLOC</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">41.22 PM</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">10.27</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">4 Persons</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">363.9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 4: Class Diagram -->
+            <div id="expt-4" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Class Diagram: Cinetix</h3>
+                    <div class="mermaid">
+classDiagram
+    class User {
+        -int userId
+        -string name
+        -string email
+        -string password
+        +register() bool
+        +login() bool
+        +viewShows() list
+    }
+    class Booking {
+        -int bookingId
+        -date bookingDate
+        -decimal totalAmount
+        -string status
+        +createBooking() void
+        +generateTicket() void
+    }
+    class Show {
+        -int showId
+        -date showDate
+        -time startTime
+        -decimal basePrice
+        +getAvailableSeats() list
+    }
+    class Movie {
+        -int movieId
+        -string title
+        -int duration
+        -string genre
+        +addMovie() void
+    }
+    class Screen {
+        -int screenId
+        -string hallName
+        -int totalSeats
+        +modifyLayout() void
+    }
+    class Seat {
+        -int seatId
+        -string seatNumber
+        -string seatTier
+        -bool isAvailable
+        +checkSeatStatus() bool
+    }
+    class Payment {
+        -int paymentId
+        -decimal amount
+        -string method
+        -string status
+        +pay() void
+    }
+    class Admin {
+        -int adminId
+        -string name
+        -string role
+        +manageShows() void
+        +generateReports() void
+    }
+
+    User "1" -- "0..*" Booking : places >
+    Show "1" -- "0..*" Booking : for <
+    Movie "1" -- "0..*" Show : features >
+    Screen "1" *-- "1..*" Seat : contains >
+    Screen "1" -- "0..*" Show : scheduled in >
+    Booking "1" *-- "1..*" Seat : bookedSeats >
+    Booking "1" *-- "0..1" Payment : pays >
+    Admin "1" -- "0..*" Show : manages >
+                    </div>
+                </div>
+                
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Class Diagram: Mobile Stock System</h3>
+                    <div class="mermaid">
+classDiagram
+    class Cashier {
+        -int cashierId
+        -string name
+        -string shift
+        +login() bool
+        +createInvoice() void
+        +scanIMEI() void
+    }
+    class Invoice {
+        -int invoiceId
+        -string invoiceNo
+        -decimal totalAmount
+        -decimal gstAmount
+        +calculateTotal() void
+        +printInvoice() void
+    }
+    class Customer {
+        -int customerId
+        -string name
+        -string mobile
+        -string email
+        +registerCustomer() void
+    }
+    class ProductModel {
+        -int modelId
+        -string brand
+        -string modelName
+        -int stockQuantity
+        -int minThreshold
+        +updateStock() void
+        +checkLowStock() bool
+    }
+    class MobileUnit {
+        -string imeiNumber
+        -decimal purchasePrice
+        -string status
+        +updateStatus() void
+    }
+    class InvoiceItem {
+        -int itemId
+        -decimal unitPrice
+        -int warranty
+        +verifyIMEI() void
+    }
+    class Supplier {
+        -int supplierId
+        -string companyName
+        -string gstin
+        +addSupplier() void
+    }
+    class Admin {
+        -int adminId
+        -string name
+        -string role
+        +inwardIMEIs() void
+        +viewProfitReport() void
+    }
+
+    Cashier "1" -- "0..*" Invoice : generates >
+    Customer "1" -- "0..*" Invoice : billed to <
+    Invoice "1" *-- "1..*" InvoiceItem : has >
+    ProductModel "1" o-- "1..*" MobileUnit : belongs to <
+    InvoiceItem "1" -- "1" MobileUnit : identifies >
+    Supplier "1" -- "0..*" MobileUnit : delivers >
+    Admin "1" -- "0..*" ProductModel : manages >
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 5: Object Diagram -->
+            <div id="expt-5" class="expt-content hidden fade-in">
+                 <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Object Diagram: Cinetix Runtime Snapshot</h3>
+                    <div class="mermaid">
+classDiagram
+    class u1_Customer {
+        name = "Aarav Sharma"
+        email = "aarav@gmail.com"
+        mobile = "9820198201"
+    }
+    class b1_Booking {
+        bookingId = 8841
+        bookingDate = "24-10-2026"
+        totalAmount = 700.00
+        bookingStatus = "Confirmed"
+    }
+    class p1_Payment {
+        amount = 700.00
+        method = "UPI"
+        status = "Paid"
+        txnId = "UPI83920199"
+    }
+    class s1_Show {
+        showId = 204
+        startTime = "19:30"
+        screenName = "Audi 1"
+    }
+    class m1_Movie {
+        title = "Interstellar"
+        duration = 169
+        rating = 8.7
+    }
+    class bs1_BookedSeat {
+        seatNumber = "E8"
+        tier = "Gold"
+        price = 350.00
+    }
+    class bs2_BookedSeat {
+        seatNumber = "E9"
+        tier = "Gold"
+        price = 350.00
+    }
+
+    u1_Customer --> b1_Booking : places
+    b1_Booking --> p1_Payment : pays
+    b1_Booking --> s1_Show : for
+    s1_Show --> m1_Movie : features
+    b1_Booking --> bs1_BookedSeat : has
+    b1_Booking --> bs2_BookedSeat : has
+                    </div>
+                 </div>
+                 
+                 <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Object Diagram: Mobile Stock Runtime Snapshot</h3>
+                    <div class="mermaid">
+classDiagram
+    class c1_Cashier {
+        name = "Ritesh Deshmukh"
+        shift = "Morning"
+        counter = "POS-01"
+    }
+    class cust1_Customer {
+        name = "Rohit Verma"
+        mobile = "9819123456"
+        gstin = "Unregistered"
+    }
+    class inv1_Invoice {
+        invoiceNo = "INV-2026-9021"
+        totalAmount = 74999.00
+        gstAmount = 11440.54
+    }
+    class item1_LineItem {
+        model = "S24 256GB"
+        unitPrice = 74999.00
+        warranty = 12
+    }
+    class u1_MobileUnit {
+        imei = "358249102938471"
+        serial = "SN88921"
+        status = "Sold"
+    }
+    class p1_Payment {
+        amount = 74999.00
+        method = "UPI"
+        status = "Paid"
+        txnId = "UPI90124810"
+    }
+
+    c1_Cashier --> inv1_Invoice : generates
+    cust1_Customer --> inv1_Invoice : billed_to
+    inv1_Invoice --> item1_LineItem : has
+    item1_LineItem --> u1_MobileUnit : identifies
+    inv1_Invoice --> p1_Payment : pays
+                    </div>
+                 </div>
+            </div>
+
+            <!-- EXPT 6: Use Case Diagram -->
+            <div id="expt-6" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Use Case Diagram: Cinetix</h3>
+                    <div class="mermaid">
+flowchart LR
+    Customer([Customer])
+    Admin([Administrator])
+    PG([Payment Gateway])
+    
+    subgraph Cinetix System
+        UC1(Register Account)
+        UC2(Login)
+        UC3(Browse Movies)
+        UC4(Select Show & Seats)
+        UC5(Lock Seats)
+        UC6(Process Payment)
+        UC7(Download E-Ticket)
+        UC8(Manage Showtimes)
+    end
+    
+    Customer --> UC1
+    Customer --> UC2
+    Customer --> UC3
+    Customer --> UC4
+    Customer --> UC6
+    Customer --> UC7
+    
+    Admin --> UC2
+    Admin --> UC8
+    
+    UC4 -.->|&lt;&lt;include&gt;&gt;| UC5
+    UC4 -.->|&lt;&lt;include&gt;&gt;| UC6
+    
+    PG --> UC6
+                    </div>
+                </div>
+
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Use Case Diagram: Mobile Stock System</h3>
+                    <div class="mermaid">
+flowchart LR
+    Cashier([Cashier])
+    Admin([Store Owner])
+    PG([POS Gateway])
+    
+    subgraph Mobile Stock System
+        UC1(Employee Login)
+        UC2(Scan Barcode / IMEI)
+        UC3(Validate 15-Digit IMEI)
+        UC4(Generate Invoice)
+        UC5(Compute GST)
+        UC6(Tender Payment)
+        UC7(Inward Batch Stock)
+        UC8(View Margins)
+    end
+    
+    Cashier --> UC1
+    Cashier --> UC2
+    Cashier --> UC4
+    Cashier --> UC6
+    
+    Admin --> UC1
+    Admin --> UC7
+    Admin --> UC8
+    
+    UC2 -.->|&lt;&lt;include&gt;&gt;| UC3
+    UC4 -.->|&lt;&lt;include&gt;&gt;| UC5
+    UC4 -.->|&lt;&lt;include&gt;&gt;| UC6
+    
+    PG --> UC6
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 7: State Diagram -->
+            <div id="expt-7" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">State Diagram: Cinetix Ticket Lifecycle</h3>
+                    <div class="mermaid">
+stateDiagram-v2
+    [*] --> NotRegistered
+    NotRegistered --> AccountRegistered : Register [Valid]
+    AccountRegistered --> LoggedIn : Login
+    LoggedIn --> BrowsingShowtimes : Browse
+    BrowsingShowtimes --> ViewingSeatMatrix : Select Show
+    ViewingSeatMatrix --> SeatsLocked : Select Seats
+    
+    SeatsLocked --> ViewingSeatMatrix : [Timeout 10 mins]
+    SeatsLocked --> PaymentInProgress : Proceed to Pay
+    
+    PaymentInProgress --> PaymentFailed : [Declined]
+    PaymentFailed --> PaymentInProgress : [Retry]
+    
+    PaymentInProgress --> BookingConfirmed : [Success]
+    BookingConfirmed --> ETicketGenerated : Issue QR
+    
+    ETicketGenerated --> TicketCancelled : Cancel [>= 2 hrs before]
+    TicketCancelled --> RefundProcessed : Auto Refund
+    RefundProcessed --> [*]
+    
+    ETicketGenerated --> AdmittedToHall : Gate Scan
+    AdmittedToHall --> BookingClosed : Show Ends
+    BookingClosed --> [*]
+                    </div>
+                </div>
+                
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">State Diagram: Mobile POS Item Lifecycle</h3>
+                    <div class="mermaid">
+stateDiagram-v2
+    [*] --> POSIdle
+    POSIdle --> NewCartInitialized : Open Register
+    NewCartInitialized --> ValidatingCode : Scan IMEI
+    
+    ValidatingCode --> BarcodeError : [Invalid Luhn]
+    BarcodeError --> ValidatingCode : Retry
+    
+    ValidatingCode --> QueryingLedger : [Valid IMEI]
+    QueryingLedger --> ItemAddedToCart : [IN_STOCK]
+    
+    ItemAddedToCart --> PaymentInProcessing : Tender Pay
+    PaymentInProcessing --> PaymentCleared : [Txn Approved]
+    PaymentInProcessing --> PaymentFailed : [Txn Declined]
+    PaymentFailed --> PaymentInProcessing : [Retry]
+    
+    PaymentCleared --> StockDeducted : Update DB
+    StockDeducted --> InvoiceGenerated : Print Receipt
+    InvoiceGenerated --> [*]
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 8: Activity Diagram -->
+            <div id="expt-8" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Activity Diagram: Cinetix Booking Flow (Swimlanes)</h3>
+                    <div class="mermaid">
+flowchart TD
+    subgraph Customer
+        S((Start)) --> B[Browse Shows]
+        B --> C[Select Seats]
+        F[Review Summary] --> G[Initiate Checkout]
+        K[Download E-Ticket] --> E((End))
+    end
+    
+    subgraph Cinetix_System
+        C --> D{Seats Available?}
+        D -->|No| C
+        D -->|Yes| E1[Lock Seats 10 mins]
+        E1 --> F
+        G --> H[Compute GST & Payload]
+        I2{Payment Success?} -->|No| E1_Undo[Release Locks]
+        E1_Undo --> G
+        I2 -->|Yes| J[Commit Booking & Mark SOLD]
+        J --> K1[Generate QR PDF]
+        K1 --> K
+    end
+    
+    subgraph Payment_Gateway
+        H --> I[Authorize Payment]
+        I --> I2
+    end
+                    </div>
+                </div>
+
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Activity Diagram: Mobile Stock POS Flow (Swimlanes)</h3>
+                    <div class="mermaid">
+flowchart TD
+    subgraph Cashier
+        S((Start)) --> A[Init New Cart]
+        A --> B[Scan IMEI]
+        E[Tender Payment Mode] --> E1{Mode?}
+        I[Print Tax Invoice] --> End((End))
+    end
+    
+    subgraph System_Engine
+        B --> C{Luhn Check Valid?}
+        C -->|No| B
+        C -->|Yes| D[Populate Specs & Price]
+        D --> E
+        E1 -->|Cash| F[Open Drawer & Record]
+        E1 -->|UPI/Card| G[Send to Gateway]
+        F --> H[Deduct Stock Item DB]
+        G2{Cleared?} -->|Yes| H
+        G2 -->|No| E
+        H --> H1{Stock <= Threshold?}
+        H1 -->|Yes| H2[Trigger Low-Stock Alert]
+        H1 -->|No| I1[Generate Invoice]
+        H2 --> I1
+        I1 --> I
+    end
+    
+    subgraph External_Terminal
+        G --> G1[Process UPI/Swipe]
+        G1 --> G2
+    end
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 9: Unit Test Cases -->
+            <div id="expt-9" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Unit Test Cases: Cinetix Login Module</h3>
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-lg shadow-sm mb-6">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">TC ID</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Scenario</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Expected Result</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Actual Result</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm">
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC001</td>
+                                    <td class="px-4 py-3 text-slate-600">Login with valid registered credentials</td>
+                                    <td class="px-4 py-3 text-slate-600">User authenticated & redirected to dashboard</td>
+                                    <td class="px-4 py-3 text-slate-600">User successfully logged in & redirected</td>
+                                    <td class="px-4 py-3 text-emerald-600 font-bold"><i class="fa-solid fa-check-circle mr-1"></i>PASS</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC002</td>
+                                    <td class="px-4 py-3 text-slate-600">Login with unregistered email</td>
+                                    <td class="px-4 py-3 text-slate-600">Error: "User not found" and access denied</td>
+                                    <td class="px-4 py-3 text-slate-600">Error displayed and access denied</td>
+                                    <td class="px-4 py-3 text-emerald-600 font-bold"><i class="fa-solid fa-check-circle mr-1"></i>PASS</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC003</td>
+                                    <td class="px-4 py-3 text-slate-600">Login with incorrect password</td>
+                                    <td class="px-4 py-3 text-slate-600">Error: "Invalid password" and access denied</td>
+                                    <td class="px-4 py-3 text-slate-600">User redirected to dashboard without error!</td>
+                                    <td class="px-4 py-3 text-red-600 font-bold"><i class="fa-solid fa-times-circle mr-1"></i>FAIL</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Unit Test Cases: Mobile POS Item Scanning</h3>
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-lg shadow-sm mb-6">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">TC ID</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Scenario</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Expected Result</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Actual Result</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm">
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC001</td>
+                                    <td class="px-4 py-3 text-slate-600">Scan valid 15-digit IN_STOCK IMEI</td>
+                                    <td class="px-4 py-3 text-slate-600">Item details & price populated in cart</td>
+                                    <td class="px-4 py-3 text-slate-600">Item details & price populated in cart</td>
+                                    <td class="px-4 py-3 text-emerald-600 font-bold"><i class="fa-solid fa-check-circle mr-1"></i>PASS</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC002</td>
+                                    <td class="px-4 py-3 text-slate-600">Scan IMEI with invalid Luhn checksum</td>
+                                    <td class="px-4 py-3 text-slate-600">Error: "Invalid IMEI checksum format"</td>
+                                    <td class="px-4 py-3 text-slate-600">Error displayed on screen</td>
+                                    <td class="px-4 py-3 text-emerald-600 font-bold"><i class="fa-solid fa-check-circle mr-1"></i>PASS</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-slate-800">TC003</td>
+                                    <td class="px-4 py-3 text-slate-600">Scan IMEI already marked as SOLD</td>
+                                    <td class="px-4 py-3 text-slate-600">Error: "Device has already been sold"</td>
+                                    <td class="px-4 py-3 text-slate-600">Error: "Device has already been sold"</td>
+                                    <td class="px-4 py-3 text-emerald-600 font-bold"><i class="fa-solid fa-check-circle mr-1"></i>PASS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPT 10: ER Diagram -->
+            <div id="expt-10" class="expt-content hidden fade-in">
+                <div class="project-cinetix">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Entity-Relationship Diagram: Cinetix</h3>
+                    <div class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ BOOKING : "Submits"
+    SHOW ||--o{ BOOKING : "Reserved in"
+    SCREEN ||--o{ SHOW : "Scheduled in"
+    SCREEN ||--o{ SEAT : "Has"
+    MOVIE ||--o{ SHOW : "Features"
+    BOOKING ||--|{ BOOKED_SEAT : "Includes"
+    SEAT ||--o{ BOOKED_SEAT : "Identifies"
+    BOOKING ||--|| PAYMENT : "Pays for"
+    PAYMENT }o--|| PAYMENT_GATEWAY : "Processed through"
+    ADMIN ||--o{ MOVIE : "Manages"
+    ADMIN ||--o{ SHOW : "Schedules"
+    ADMIN ||--o{ SCREEN : "Configures"
+
+    CUSTOMER {
+        int User_ID PK
+        string Full_Name
+        string Email
+    }
+    MOVIE {
+        int Movie_ID PK
+        string Title
+        int Duration
+    }
+    SHOW {
+        int Show_ID PK
+        date Show_Date
+        time Start_Time
+    }
+    BOOKING {
+        int Booking_ID PK
+        decimal Total_Amt
+        string Status
+    }
+    PAYMENT {
+        int Payment_ID PK
+        decimal Amount
+        string Method
+    }
+                    </div>
+                </div>
+
+                <div class="project-mobile hidden">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Entity-Relationship Diagram: Mobile Stock System</h3>
+                    <div class="mermaid">
+erDiagram
+    PRODUCT_MODEL ||--|{ MOBILE_UNIT : "Categorizes"
+    PRODUCT_MODEL ||--|| INVENTORY_STOCK : "Monitors"
+    PURCHASE_ORDER }o--|| SUPPLIER : "Supplied by"
+    PURCHASE_ORDER ||--|{ MOBILE_UNIT : "Delivers"
+    INVOICE }o--|| CUSTOMER : "Billed to"
+    INVOICE ||--|{ INVOICE_ITEM : "Includes"
+    MOBILE_UNIT ||--|| INVOICE_ITEM : "Billed Unit"
+    INVOICE ||--|| PAYMENT_REGISTER : "Settles"
+    ADMIN ||--o{ PURCHASE_ORDER : "Inwards"
+    ADMIN ||--o{ PRODUCT_MODEL : "Models"
+    ADMIN ||--o{ PAYMENT_REGISTER : "Audits"
+
+    MOBILE_UNIT {
+        string IMEI_No PK
+        string Serial_No
+        string Status
+    }
+    INVOICE {
+        int Invoice_ID PK
+        decimal Subtotal
+        decimal GST
+    }
+    PRODUCT_MODEL {
+        int Model_ID PK
+        string Brand
+        string Model_Name
+    }
+    SUPPLIER {
+        int Supplier_ID PK
+        string Company_Name
+    }
+    PAYMENT_REGISTER {
+        int Register_ID PK
+        decimal Amount
+        string Mode
+    }
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Only render diagrams that are currently visible.
+        // Hidden elements (display:none) have zero dimensions and cause
+        // mermaid to throw "Syntax error in text" even on valid diagrams.
+        window.renderVisibleDiagrams = function() {
+            const unprocessed = Array.from(
+                document.querySelectorAll('.mermaid:not([data-processed])')
+            ).filter(el => el.offsetParent !== null); // visible check
+
+            if (unprocessed.length > 0) {
+                mermaid.run({ nodes: unprocessed });
+            }
+        };
+    </script>
+
+    <script>
+        const experiments = [
+            { id: 1, title: "Experiment 1", desc: "Problem Statement", icon: "fa-file-alt" },
+            { id: 2, title: "Experiment 2", desc: "SRS Document", icon: "fa-list-check" },
+            { id: 3, title: "Experiment 3", desc: "COCOMO Estimation", icon: "fa-calculator" },
+            { id: 4, title: "Experiment 4", desc: "Class Diagram", icon: "fa-project-diagram" },
+            { id: 5, title: "Experiment 5", desc: "Object Diagram", icon: "fa-cubes" },
+            { id: 6, title: "Experiment 6", desc: "Use Case Diagram", icon: "fa-users-viewfinder" },
+            { id: 7, title: "Experiment 7", desc: "State Diagram", icon: "fa-code-branch" },
+            { id: 8, title: "Experiment 8", desc: "Activity Diagram", icon: "fa-person-running" },
+            { id: 9, title: "Experiment 9", desc: "Unit Test Cases", icon: "fa-vial-circle-check" },
+            { id: 10, title: "Experiment 10", desc: "E-R Diagram", icon: "fa-database" }
+        ];
+
+        let currentExpt = 1;
+        let currentProject = 'cinetix';
+
+        function initSidebar() {
+            const navContainer = document.getElementById('nav-links');
+            experiments.forEach(expt => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `nav-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${expt.id === 1 ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`;
+                a.onclick = (e) => { e.preventDefault(); switchExperiment(expt.id); };
+                a.innerHTML = `
+                    <i class="fa-solid ${expt.icon} mr-3 text-lg ${expt.id === 1 ? 'text-primary' : 'text-slate-500 group-hover:text-slate-300'}"></i>
+                    <div class="flex flex-col">
+                        <span>${expt.title}</span>
+                        <span class="text-[10px] font-normal opacity-70">${expt.desc}</span>
+                    </div>
+                `;
+                a.dataset.id = expt.id;
+                navContainer.appendChild(a);
+            });
+        }
+
+        function switchExperiment(id) {
+            currentExpt = id;
+            const exptData = experiments.find(e => e.id === id);
+            document.getElementById('current-expt-title').textContent = `${exptData.title}: ${exptData.desc}`;
+            
+            // Update sidebar active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const icon = link.querySelector('i');
+                if (parseInt(link.dataset.id) === id) {
+                    link.classList.add('bg-slate-800', 'text-white');
+                    link.classList.remove('text-slate-400');
+                    icon.classList.add('text-primary');
+                    icon.classList.remove('text-slate-500', 'group-hover:text-slate-300');
+                } else {
+                    link.classList.remove('bg-slate-800', 'text-white');
+                    link.classList.add('text-slate-400');
+                    icon.classList.remove('text-primary');
+                    icon.classList.add('text-slate-500', 'group-hover:text-slate-300');
+                }
+            });
+
+            // Show appropriate content block
+            document.querySelectorAll('.expt-content').forEach(el => el.classList.add('hidden'));
+            const activeContent = document.getElementById(`expt-${id}`);
+            activeContent.classList.remove('hidden');
+
+            // Apply project visibility within the active experiment
+            updateProjectVisibility();
+
+            // Render any diagrams that just became visible
+            if (window.renderVisibleDiagrams) window.renderVisibleDiagrams();
+        }
+
+        function setProject(projectStr) {
+            currentProject = projectStr;
+            
+            const btnCin = document.getElementById('btn-cinetix');
+            const btnMob = document.getElementById('btn-mobile');
+            
+            if (projectStr === 'cinetix') {
+                btnCin.className = 'px-4 py-1.5 rounded-md text-sm font-medium transition-all shadow bg-white text-primary';
+                btnMob.className = 'px-4 py-1.5 rounded-md text-sm font-medium transition-all text-slate-500 hover:text-slate-800';
+            } else {
+                btnMob.className = 'px-4 py-1.5 rounded-md text-sm font-medium transition-all shadow bg-white text-emerald-600';
+                btnCin.className = 'px-4 py-1.5 rounded-md text-sm font-medium transition-all text-slate-500 hover:text-slate-800';
+            }
+
+            updateProjectVisibility();
+
+            // Render any diagrams that just became visible
+            if (window.renderVisibleDiagrams) window.renderVisibleDiagrams();
+        }
+
+        function updateProjectVisibility() {
+            // Hide all project divs
+            document.querySelectorAll('.project-cinetix, .project-mobile').forEach(el => {
+                if (el.tagName !== 'TR') el.classList.add('hidden');
+            });
+            
+            // Specific handling for COCOMO Table rows
+            document.querySelectorAll('tr.project-cinetix, tr.project-mobile').forEach(el => el.classList.add('hidden'));
+
+            // Show active project divs
+            document.querySelectorAll(`.project-${currentProject}`).forEach(el => {
+                el.classList.remove('hidden');
+            });
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('absolute');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initSidebar();
+
+            // Auto-hide sidebar on mobile initially
+            if (window.innerWidth < 768) {
+                document.getElementById('sidebar').classList.add('-translate-x-full', 'absolute');
+            }
+
+            // Render diagrams visible on first load (experiment 1 is shown by default)
+            // Use a small delay to ensure the module script has run first
+            setTimeout(() => {
+                if (window.renderVisibleDiagrams) window.renderVisibleDiagrams();
+            }, 50);
+        });
+    </script>
+</body>
+</html>

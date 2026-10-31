@@ -1,0 +1,6 @@
+node_modules/
+mermaid.standalone.js
+mermaid.mjs
+rendered_dom.html
+verify_fix.mjs
+debug_portfolio.html
